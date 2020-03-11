@@ -7,12 +7,12 @@ import com.geovanni.banks.bussiness.request.ServicesImpl
 import com.geovanni.banks.bussiness.utils.ServicesError
 import com.geovanni.banks.bussiness.utils.ServicesResponse
 
-class RootPresenter(private val view: IServicesContractView) : IServiceListener {
+class RootPresenter(private val view: IServicesContractView, context: Context) : IServiceListener {
 
-    private val servicesImpl: ServicesImpl = ServicesImpl(this)
+    private val servicesImpl: ServicesImpl = ServicesImpl(this, context)
 
     fun requestBanks() {
-        servicesImpl.getBanks()
+        servicesImpl.askForSaveInfo()
     }
 
     override fun onResponse(response: ServicesResponse<*>) {
