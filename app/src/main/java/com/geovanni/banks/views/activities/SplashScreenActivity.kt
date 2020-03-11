@@ -40,7 +40,7 @@ class SplashScreenActivity : AppCompatActivity(), IServicesContractView {
     }
 
     override fun showResponse(response: ServicesResponse<*>?) {
-        var banks: List<ServiceBanksResponse> = response as List<ServiceBanksResponse>
+        var banks: List<ServiceBanksResponse> = response?.getResponse() as List<ServiceBanksResponse>
         try {
             ManagerDbAsync.InsertDataToDbAsync(BankRoomDataBase.getDatabase(this), banks).execute()
         } catch (e: Exception) {

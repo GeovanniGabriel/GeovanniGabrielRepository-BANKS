@@ -8,4 +8,8 @@ class ServicesResponse<T> {
         this.response = response
     }
 
+    fun getResponse(): T? {
+        return response
+    }
+
 }
