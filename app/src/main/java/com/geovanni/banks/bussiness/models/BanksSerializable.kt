@@ -4,5 +4,4 @@ import java.io.Serializable
 
 class BanksSerializable : Serializable {
     var bankslist: List<ServiceBanksResponse>? = null
-
 }

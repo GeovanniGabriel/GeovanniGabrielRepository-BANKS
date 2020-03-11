@@ -23,8 +23,7 @@ class SplashScreenActivity : AppCompatActivity(), IServicesContractView {
     }
 
     override fun showResponse(response: ServicesResponse<*>?) {
-        var banks: List<ServiceBanksResponse> =
-            response?.getResponse() as List<ServiceBanksResponse>
+        var banks: List<ServiceBanksResponse> = response?.getResponse() as List<ServiceBanksResponse>
         navigateToHome(banks)
     }
 
@@ -36,7 +35,6 @@ class SplashScreenActivity : AppCompatActivity(), IServicesContractView {
     }
 
     override fun hideProgress() {
-
     }
 
     private fun navigateToHome(banks: List<ServiceBanksResponse>) {
@@ -48,5 +46,6 @@ class SplashScreenActivity : AppCompatActivity(), IServicesContractView {
         intent.putExtra("listBanks", banksSerializable)
         startActivity(intent)
         finish()
+
     }
 }

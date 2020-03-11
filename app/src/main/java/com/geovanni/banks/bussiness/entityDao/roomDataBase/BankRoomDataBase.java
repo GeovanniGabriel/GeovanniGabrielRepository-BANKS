@@ -2,7 +2,6 @@ package com.geovanni.banks.bussiness.entityDao.roomDataBase;
 
 import android.content.Context;
 
-import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.DatabaseConfiguration;
 import androidx.room.InvalidationTracker;
@@ -27,7 +26,6 @@ public abstract class BankRoomDataBase extends RoomDatabase {
         return INSTANCE;
     }
 
-
     @Override
     protected SupportSQLiteOpenHelper createOpenHelper(DatabaseConfiguration config) {
         return null;
@@ -40,6 +38,5 @@ public abstract class BankRoomDataBase extends RoomDatabase {
 
     @Override
     public void clearAllTables() {
-
     }
 }

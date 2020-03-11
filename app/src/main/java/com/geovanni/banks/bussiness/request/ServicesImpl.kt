@@ -20,22 +20,20 @@ class ServicesImpl(private val iServiceListener: IServiceListener, context: Cont
     private val retrofit: Retrofit = ServicesRetrofitManager.instance!!.retrofitAPI
     private val context: Context = context
 
-    private val iServicesRetrofitMethods: IServicesRetrofitMethods =
-        retrofit.create(IServicesRetrofitMethods::class.java)
+    private val iServicesRetrofitMethods: IServicesRetrofitMethods = retrofit.create(IServicesRetrofitMethods::class.java)
 
     fun askForSaveInfo() {
         val serviceError = ServicesError()
         try {
-            var banks: List<ServiceBanksResponse> =
-                ManagerDbAsync.GetAllDataFromDbAsync(BankRoomDataBase.getDatabase(context))
-                    .execute()
-                    .get();
+
+            var banks: List<ServiceBanksResponse> = ManagerDbAsync.GetAllDataFromDbAsync(BankRoomDataBase.getDatabase(context)).execute().get() as List<ServiceBanksResponse>;
 
             if (banks.isEmpty()) {
                 getInfoFromService()
             } else {
                 returnInfoFromDB(banks)
             }
+
         } catch (e: InterruptedException) {
             serviceError.message = ""
             serviceError.type = 1
@@ -56,10 +54,7 @@ class ServicesImpl(private val iServiceListener: IServiceListener, context: Cont
     private fun getInfoFromService() {
         val serviceError = ServicesError()
         iServicesRetrofitMethods.banks?.enqueue(object : Callback<List<ServiceBanksResponse?>?> {
-            override fun onResponse(
-                call: Call<List<ServiceBanksResponse?>?>,
-                response: Response<List<ServiceBanksResponse?>?>
-            ) {
+            override fun onResponse(call: Call<List<ServiceBanksResponse?>?>, response: Response<List<ServiceBanksResponse?>?>) {
                 val servicesResponse = ServicesResponse<List<ServiceBanksResponse>>()
                 servicesResponse.setResponse(response.body() as List<ServiceBanksResponse>)
                 saveInfoIntoDB(response.body() as List<ServiceBanksResponse>)
@@ -76,8 +71,7 @@ class ServicesImpl(private val iServiceListener: IServiceListener, context: Cont
 
     fun saveInfoIntoDB(banks: List<ServiceBanksResponse>) {
         try {
-            ManagerDbAsync.InsertDataToDbAsync(BankRoomDataBase.getDatabase(context), banks)
-                .execute()
+            ManagerDbAsync.InsertDataToDbAsync(BankRoomDataBase.getDatabase(context), banks).execute()
         } catch (e: Exception) {
         }
     }
