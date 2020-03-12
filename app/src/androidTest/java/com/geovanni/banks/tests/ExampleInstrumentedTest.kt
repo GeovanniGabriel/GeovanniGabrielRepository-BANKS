@@ -1,8 +1,9 @@
-package com.geovanni.banks
+package com.geovanni.banks.tests
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -15,8 +16,16 @@ import org.junit.runner.RunWith
 class ExampleInstrumentedTest {
     @Test
     fun useAppContext() {
-        // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("com.geovanni.banks", appContext.packageName)
     }
+
+    fun test_esto_siempre_pasa() {
+        assertTrue(5 > 1)
+    }
+
+    fun test_esto_nunca_pasa() {
+        assertTrue(5 < 1)
+    }
+
 }

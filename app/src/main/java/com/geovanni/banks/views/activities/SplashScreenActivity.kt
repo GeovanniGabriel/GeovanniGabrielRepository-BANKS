@@ -2,6 +2,7 @@ package com.geovanni.banks.views.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.geovanni.banks.R
@@ -19,11 +20,19 @@ class SplashScreenActivity : AppCompatActivity(), IServicesContractView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
-        rootPresenter.requestBanks()
+
+        object : CountDownTimer(3000, 1000) {
+            override fun onTick(l: Long) {}
+            override fun onFinish() {
+                rootPresenter.requestBanks()
+            }
+        }.start()
+
     }
 
     override fun showResponse(response: ServicesResponse<*>?) {
-        var banks: List<ServiceBanksResponse> = response?.getResponse() as List<ServiceBanksResponse>
+        var banks: List<ServiceBanksResponse> =
+            response?.getResponse() as List<ServiceBanksResponse>
         navigateToHome(banks)
     }
 

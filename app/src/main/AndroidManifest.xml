@@ -25,7 +25,8 @@
 
         <activity
             android:name=".views.activities.MainActivity"
-            android:screenOrientation="fullSensor" />
+            android:screenOrientation="fullSensor"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
 
     </application>
 
